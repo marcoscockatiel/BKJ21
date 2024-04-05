@@ -132,3 +132,64 @@ int phit;
 int pstand;
 bool playerDone;
 bool dealerDone;
+
+void Blackjack::addPlayerCard()
+{
+    if (phandSize <= 5)
+    {
+        phand[phandSize] = 1 + (rand() % 11);
+        phandSize++;
+    }
+    else
+    {
+        std::cout << "Sorry. You have reached the maximum number of cards (5)." << std::endl;
+        playerDone = true;
+    }
+}
+
+void Blackjack::addDealerCard()
+{
+    if (dhandSize <= 5)
+    {
+        dhand[dhandSize] = 1 + (rand() % 11);
+        dhandSize++;
+    }
+    else
+    {
+        dealerDone = true;
+    }
+}
+
+void Blackjack::printHand()
+{
+    std::cout << "Your current hand is...\n";
+
+    for (int i = 0; i < phandSize; i++)
+    {
+        std::cout << "    -" << phand[i] << "-    \n\n";
+    }
+
+    std::cout << "Dealer's current hand is...\n";
+
+    for (int j = 0; j < dhandSize; j++)
+    {
+        std::cout << "    -" << dhand[j] << "-    \n\n";
+    }
+}
+
+void Blackjack::sumHands()
+{
+    dhandSum = 0;
+    phandSum = 0;
+    for (int i = 0; i < dhandSize; i++)
+    {
+        dhandSum += dhand[i];
+    }
+
+    for (int j = 0; j < phandSize; j++)
+    {
+        phandSum += phand[j];
+    }
+
+    std::cout << "Current player hand sum is: " << phandSum << std::endl;
+}
