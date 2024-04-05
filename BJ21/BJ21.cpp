@@ -1,5 +1,6 @@
-#include "stdafx.h"
-#include "Blackjack.h"
+#include <iostream>
+//#include "stdafx.h"
+#include "BJ21.h"
 
 Blackjack::Blackjack()
 {
