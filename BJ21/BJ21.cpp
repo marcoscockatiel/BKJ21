@@ -15,7 +15,7 @@ Blackjack::Blackjack()
 
 void Blackjack::playGame()
 {
-    cout << "Welcome to Blackjack!\n";
+    std::cout << "Welcome to Blackjack!\n";
 
     // Start the player and dealer with two cards
     addPlayerCard();
@@ -27,12 +27,12 @@ void Blackjack::playGame()
 
     if (dhandSum == 21)
     {
-        cout << "Dealer has blackjack. Dealer wins.\n";
+        std::cout << "Dealer has blackjack. Dealer wins.\n";
         return;
     }
     else if (phandSum == 21)
     {
-        cout << "Player has blackjack. Player wins.\n";
+        std::cout << "Player has blackjack. Player wins.\n";
         return;
     }
 
@@ -40,8 +40,8 @@ void Blackjack::playGame()
     {
         if (playerDone == false)
         {
-            cout << "Would you like to hit? (1 - Yes, 2 - No)\n";
-            cin >> phit;
+            std::cout << "Would you like to hit? (1 - Yes, 2 - No)\n";
+            std::cin >> phit;
 
             if (phit == 1)
             {
@@ -51,7 +51,7 @@ void Blackjack::playGame()
 
                 if (phandSum > 21)
                 {
-                    cout << "Player's hand exceeded 21. Player loses.\n";
+                    std::cout << "Player's hand exceeded 21. Player loses.\n";
                     return;
                 }
             }
@@ -59,8 +59,8 @@ void Blackjack::playGame()
 
         if (playerDone == false)
         {
-            cout << "Would you like to stand? (1 - Yes, 2 - No)\n";
-            cin >> pstand;
+            std::cout << "Would you like to stand? (1 - Yes, 2 - No)\n";
+            std::cin >> pstand;
         }
 
         if (pstand == 1)
@@ -76,7 +76,7 @@ void Blackjack::playGame()
 
             if (dhandSum > 21)
             {
-                cout << "Dealer hand exceeded 21. Dealer loses.\n";
+                std::cout << "Dealer hand exceeded 21. Dealer loses.\n";
                 return;
             }
         }
@@ -87,17 +87,17 @@ void Blackjack::playGame()
 
         if (phandSum == 21 && dhandSum == 21)
         {
-            cout << "Push, player and dealer reached 21.\n";
+            std::cout << "Push, player and dealer reached 21.\n";
             return;
         }
         else if (phandSum == 21)
         {
-            cout << "Player reached 21. Player wins.\n";
+            std::cout << "Player reached 21. Player wins.\n";
             return;
         }
         else if (dhandSum == 21)
         {
-            cout << "Dealer reached 21. Dealer wins.\n";
+            std::cout << "Dealer reached 21. Dealer wins.\n";
             return;
         }
 
@@ -105,17 +105,17 @@ void Blackjack::playGame()
         {
             if (dhandSum < phandSum)
             {
-                cout << "Sum of your hand exceeds the dealer's sum of " << dhandSum << "! You win!";
+                std::cout << "Sum of your hand exceeds the dealer's sum of " << dhandSum << "! You win!";
                 return;
             }
             else if (phandSum == dhandSum)
             {
-                cout << "Dealer sum of " << dhandSum << " is equal to the sum of your hand. Tie game.";
+                std::cout << "Dealer sum of " << dhandSum << " is equal to the sum of your hand. Tie game.";
                 return;
             }
             else if (dhandSum > phandSum)
             {
-                cout << "Sum of your hand is lower than the dealer's sum of " << dhandSum << ". You lose!";
+                std::cout << "Sum of your hand is lower than the dealer's sum of " << dhandSum << ". You lose!";
                 return;
             }
         }

@@ -11,12 +11,12 @@ int main()
     {
         Blackjack casino_royale;
         casino_royale.playGame();
-        cout << "\nWould you like to play again? (1 - Yes, 2 - No)\n";
-        cin >> exitGame;
+        std::cout << "\nWould you like to play again? (1 - Yes, 2 - No)\n";
+        std::cin >> exitGame;
     } while (exitGame == 1);
 
 
-    cout << "\nThanks for playing!\n";
+    std::cout << "\nThanks for playing!\n";
     system("pause");
     return 0;
 }
