@@ -1,20 +1,133 @@
-// BJ21.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#include "stdafx.h"
+#include "Blackjack.h"
 
-#include <iostream>
-
-int main()
+Blackjack::Blackjack()
 {
-    std::cout << "Hello World!\n";
+    srand(time(0));
+    dhandSize = 0;
+    phandSize = 0;
+    dhandSum = 0;
+    phandSum = 0;
+    playerDone = false;
+    dealerDone = false;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void Blackjack::playGame()
+{
+    cout << "Welcome to Blackjack!\n";
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    // Start the player and dealer with two cards
+    addPlayerCard();
+    addPlayerCard();
+    addDealerCard();
+    addDealerCard();
+    sumHands();
+    printHand();
+
+    if (dhandSum == 21)
+    {
+        cout << "Dealer has blackjack. Dealer wins.\n";
+        return;
+    }
+    else if (phandSum == 21)
+    {
+        cout << "Player has blackjack. Player wins.\n";
+        return;
+    }
+
+    while (dealerDone == false || playerDone == false)
+    {
+        if (playerDone == false)
+        {
+            cout << "Would you like to hit? (1 - Yes, 2 - No)\n";
+            cin >> phit;
+
+            if (phit == 1)
+            {
+                addPlayerCard();
+                printHand();
+                sumHands();
+
+                if (phandSum > 21)
+                {
+                    cout << "Player's hand exceeded 21. Player loses.\n";
+                    return;
+                }
+            }
+        }
+
+        if (playerDone == false)
+        {
+            cout << "Would you like to stand? (1 - Yes, 2 - No)\n";
+            cin >> pstand;
+        }
+
+        if (pstand == 1)
+        {
+            playerDone = true;
+        }
+
+        if (dhandSum < 17 && dealerDone != true)
+        {
+            addDealerCard();
+            printHand();
+            sumHands();
+
+            if (dhandSum > 21)
+            {
+                cout << "Dealer hand exceeded 21. Dealer loses.\n";
+                return;
+            }
+        }
+        else if (dhandSum >= 17)
+        {
+            dealerDone = true;
+        }
+
+        if (phandSum == 21 && dhandSum == 21)
+        {
+            cout << "Push, player and dealer reached 21.\n";
+            return;
+        }
+        else if (phandSum == 21)
+        {
+            cout << "Player reached 21. Player wins.\n";
+            return;
+        }
+        else if (dhandSum == 21)
+        {
+            cout << "Dealer reached 21. Dealer wins.\n";
+            return;
+        }
+
+        if ((playerDone == true && dealerDone == true) || (phandSize == 5 && phandSize == 5))
+        {
+            if (dhandSum < phandSum)
+            {
+                cout << "Sum of your hand exceeds the dealer's sum of " << dhandSum << "! You win!";
+                return;
+            }
+            else if (phandSum == dhandSum)
+            {
+                cout << "Dealer sum of " << dhandSum << " is equal to the sum of your hand. Tie game.";
+                return;
+            }
+            else if (dhandSum > phandSum)
+            {
+                cout << "Sum of your hand is lower than the dealer's sum of " << dhandSum << ". You lose!";
+                return;
+            }
+        }
+    }
+}
+
+int dhand[5];
+int phand[5];
+int dhandSize;
+int phandSize;
+int dhandSum;
+int phandSum;
+int phit;
+int pstand;
+bool playerDone;
+bool dealerDone;
